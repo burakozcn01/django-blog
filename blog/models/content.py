@@ -3,13 +3,13 @@ from autoslug import AutoSlugField
 from blog.models import categoryModel
 from ckeditor.fields import RichTextField
 from account.models import CustomUserModel
+from blog.models.abstract_models import DateAbstractModel
 
-class contentModel(models.Model):
+class contentModel(DateAbstractModel):
     image = models.ImageField(upload_to='content_image', blank=True, null=True)
     title = models.CharField(max_length=50, blank=False, null=False)
     content = RichTextField()
     date = models.DateTimeField(auto_now_add=True)
-    change_date = models.DateTimeField(auto_now=True)
     slug = AutoSlugField(populate_from='title', unique=True)
     category = models.ManyToManyField('categoryModel',related_name='content')
     author = models.ForeignKey('account.CustomUserModel', on_delete=models.CASCADE, related_name='contents')
