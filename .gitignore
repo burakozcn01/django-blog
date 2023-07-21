@@ -1,5 +1,12 @@
 __pycache__
 .vscode
 db.sqlite3
+content_image
 comment_image
+.png
+.PNG
+.jpg
+.JPG
+.jpeg
+.JPEG
 migrations
