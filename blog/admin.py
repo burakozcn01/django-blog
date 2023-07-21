@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import categoryModel, contentModel, commentModel
+from .models import categoryModel, contentModel, commentModel, contactModel
 
 admin.site.register(categoryModel)
 
@@ -15,3 +15,9 @@ class CommentAdmin(admin.ModelAdmin):
     search_fields = ('author__username', 'content')
 
 admin.site.register(commentModel, CommentAdmin)
+
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ('email', 'name_surname', 'created_date')
+    search_fields = ('email', 'name_surname')
+
+admin.site.register(contactModel, ContactAdmin)
