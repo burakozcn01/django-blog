@@ -1,6 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
-
+from account.models import CustomUserModel
 
 class contactModel(models.Model):
     email = models.EmailField(max_length=60, blank=False, null=False)

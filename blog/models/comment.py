@@ -1,9 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import User
 from blog.models import contentModel
+from account.models import CustomUserModel
 
 class commentModel(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comment')
+    author = models.ForeignKey('account.CustomUserModel', on_delete=models.CASCADE, related_name='comments')
     content = models.ForeignKey(contentModel, on_delete=models.CASCADE, related_name='comments')
     comment = models.TextField(blank=False, null=False)
     created_date = models.DateTimeField(auto_now_add=True)
