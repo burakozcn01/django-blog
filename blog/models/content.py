@@ -4,8 +4,8 @@ from blog.models import categoryModel
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 
-class commentModel(models.Model):
-    image = models.ImageField(upload_to='comment_image', blank=True, null=True)
+class contentModel(models.Model):
+    image = models.ImageField(upload_to='content_image', blank=True, null=True)
     title = models.CharField(max_length=50, blank=False, null=False)
     content = RichTextField()
     date = models.DateTimeField(auto_now_add=True)
