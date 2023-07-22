@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="path-to-your-image">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% endblock %}</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+
+  </style>
+</head>
+<body>
+    <!-- Navbar -->
+{% include 'pages/components/navbar.html '%}
+
+{% block content %}{% endblock %}
+  <!-- Main Content -->
+  <div class="container mt-4">
+    <div class="row">
+      <!-- Blog Cards -->
+      <div class="col-md-8 mx-auto">
+        <div class="blog-cards">
+          <!-- Blog cards go here -->
+          <div class="blog-card">
+            <a href="post_detail.html">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="img-wrapper">
+                    <img src="path-to-your-image.jpg" alt="Post Image" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <h3 class="mt-2">Post Title</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquam risus at ex ultrices, ac tincidunt nisl dapibus.</p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- Add more blog cards as needed -->
+          <!-- Blog cards go here -->
+          <div class="blog-card">
+            <a href="post_detail.html">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="img-wrapper">
+                    <img src="path-to-your-image.jpg" alt="Post Image" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <h3 class="mt-2">Post Title</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquam risus at ex ultrices, ac tincidunt nisl dapibus.</p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- Add more blog cards as needed -->
+          <!-- Blog cards go here -->
+          <div class="blog-card">
+            <a href="post_detail.html">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="img-wrapper">
+                    <img src="path-to-your-image.jpg" alt="Post Image" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <h3 class="mt-2">Post Title</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquam risus at ex ultrices, ac tincidunt nisl dapibus.</p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- Add more blog cards as needed -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% include 'pages/components/footer.html '%}
+
+  <!-- Bootstrap Bundle with Popper.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
