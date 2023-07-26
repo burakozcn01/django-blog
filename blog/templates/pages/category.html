@@ -22,7 +22,7 @@
                   </div>
                 </div>
                 <div class="col-md-8">
-                  <h3 class="mt-2">{{ post.title }}</h3>
+                  <h3 class="mt-2"><a href="{% url 'postdetail' slug=post.slug %}">{{ post.title }}</a></h3>
                   <p> {{ post.content|safe|truncatechars_html:50 }} </p>
                   <p> {{post.date|timesince}} önce paylaşıldı</p>
                 </div>

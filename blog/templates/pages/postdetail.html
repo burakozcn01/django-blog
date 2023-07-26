@@ -1,0 +1,54 @@
+{% extends 'pages/base.html'%}
+{% load static %}
+{% block title %}{{post.title}}{% endblock %}
+
+{% block posts %}
+
+  <!-- Main Content -->
+  <div class="container mt-4">
+    <div class="row">
+      <!-- Blog Cards -->
+      <div class="col-md-8 mx-auto">
+        <div class="blog-cards">
+          <!-- Blog cards go here -->
+          <div class="blog-card">
+            <a href="post_detail.html">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="img-wrapper">
+                    <img src="{{post.image.url}}" alt="Post Image" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <h3 class="mt-2">{{ post.title }}</h3>
+                  <p> {{ post.content|safe }} </p>
+                  <p> {{post.date|timesince}} önce paylaşıldı</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+     
+<h5>Yorumlar</h5>
+
+{% for comment in comments %}
+    <div class="card">
+        <div class="card-body" style="display:flex;flex-direction: row;">
+            <div>
+                {% if comment.author.avatar %}
+                    <img src="{{comment.author.avatar.url}}" alt="Profile Image" class="img-fluid" style="width: 50px; height: 50px; border-radius: 50%;">
+                {% else %}
+                    <img src="{% static 'img/1.PNG' %}" alt="Profile Image" class="img-fluid" style="width: 50px; height: 50px; border-radius: 50%;">
+                {% endif %}
+            </div>
+            <div>
+                <h5 class="card-title">{{comment.author.username}}</h5>
+                <p class="card-text">{{comment.comment}}</p>
+            </div>
+    </div>
+
+{% endfor %}
+{% endblock %}

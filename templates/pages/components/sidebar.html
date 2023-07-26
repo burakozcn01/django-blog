@@ -3,23 +3,23 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body>
 
-<div class="w3-sidebar w3-light-grey w3-bar-block" style="height: 400px; width: 150px;right: 400px">
-    <h3 class="w3-bar-item">Menu</h3>
+<div class="w3-sidebar w3-light-grey w3-bar-block" style="height: 400px; width: 150px; position: fixed; top: 52px; right: 0;">
+  <h3 class="w3-bar-item">Menu</h3>
 
-    {% if request.user.is_authenticated %}
-    <a href="#" class="w3-bar-item w3-button">Menü</a>
-    <a href="#" class="w3-bar-item w3-button">Profil Düzenle</a>
-    <a href="#" class="w3-bar-item w3-button">Şifre Değiştir</a>
-    <a href="#" class="w3-bar-item w3-button">Yazı Ekle</a>
-    <a href="{% url 'myposts'%}" class="w3-bar-item w3-button">Yazılarım</a>
-    <a href="#" class="w3-bar-item w3-button">Çıkış Yap</a>
-    {% else %}
-    <a href="#" class="w3-bar-item w3-button">Giriş Yap</a>
-    <a href="#" class="w3-bar-item w3-button">Kayıt Ol</a>
-    {% endif %}
-  </div>
+  {% if request.user.is_authenticated %}
+  <a href="#" class="w3-bar-item w3-button">Menü</a>
+  <a href="#" class="w3-bar-item w3-button">Profil Düzenle</a>
+  <a href="#" class="w3-bar-item w3-button">Şifre Değiştir</a>
+  <a href="#" class="w3-bar-item w3-button">Yazı Ekle</a>
+  <a href="{% url 'myposts'%}" class="w3-bar-item w3-button">Yazılarım</a>
+  <a href="#" class="w3-bar-item w3-button">Çıkış Yap</a>
+  {% else %}
+  <a href="#" class="w3-bar-item w3-button">Giriş Yap</a>
+  <a href="#" class="w3-bar-item w3-button">Kayıt Ol</a>
+  {% endif %}
+</div>
+
 <div style="margin-left:100px">
-
 </div>
       
 </body>

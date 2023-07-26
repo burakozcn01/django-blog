@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class CustomUserModel(AbstractUser):
-    profile_picture = models.ImageField(upload_to='images/profile-picture/', blank=True, null=True)
+    avatar = models.ImageField(upload_to='images/profile-picture/', blank=True, null=True)
     linkedin = models.URLField(blank=True, null=True)
     twitter = models.URLField(blank=True, null=True)
     instagram = models.URLField(blank=True, null=True)
