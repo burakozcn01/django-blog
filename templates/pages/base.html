@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="path-to-your-image">
 <head>
@@ -12,71 +13,11 @@
 </head>
 <body>
     <!-- Navbar -->
-{% include 'pages/components/navbar.html '%}
+{% include 'pages/components/navbar.html' %}
+{% include 'pages/components/sidebar.html '%}
 
-{% block content %}{% endblock %}
-  <!-- Main Content -->
-  <div class="container mt-4">
-    <div class="row">
-      <!-- Blog Cards -->
-      <div class="col-md-8 mx-auto">
-        <div class="blog-cards">
-          <!-- Blog cards go here -->
-          <div class="blog-card">
-            <a href="post_detail.html">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="img-wrapper">
-                    <img src="path-to-your-image.jpg" alt="Post Image" class="img-fluid">
-                  </div>
-                </div>
-                <div class="col-md-8">
-                  <h3 class="mt-2">Post Title</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquam risus at ex ultrices, ac tincidunt nisl dapibus.</p>
-                </div>
-              </div>
-            </a>
-          </div>
-          <!-- Add more blog cards as needed -->
-          <!-- Blog cards go here -->
-          <div class="blog-card">
-            <a href="post_detail.html">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="img-wrapper">
-                    <img src="path-to-your-image.jpg" alt="Post Image" class="img-fluid">
-                  </div>
-                </div>
-                <div class="col-md-8">
-                  <h3 class="mt-2">Post Title</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquam risus at ex ultrices, ac tincidunt nisl dapibus.</p>
-                </div>
-              </div>
-            </a>
-          </div>
-          <!-- Add more blog cards as needed -->
-          <!-- Blog cards go here -->
-          <div class="blog-card">
-            <a href="post_detail.html">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="img-wrapper">
-                    <img src="path-to-your-image.jpg" alt="Post Image" class="img-fluid">
-                  </div>
-                </div>
-                <div class="col-md-8">
-                  <h3 class="mt-2">Post Title</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquam risus at ex ultrices, ac tincidunt nisl dapibus.</p>
-                </div>
-              </div>
-            </a>
-          </div>
-          <!-- Add more blog cards as needed -->
+{% block posts %}{% endblock %}
 
-        </div>
-      </div>
-    </div>
-  </div>
 
 {% include 'pages/components/footer.html '%}
 

@@ -1,0 +1,1 @@
+from blog.templatetags.category_list import category_list

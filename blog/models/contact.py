@@ -2,7 +2,7 @@ from django.db import models
 from account.models import CustomUserModel
 from blog.models.abstract_models import DateAbstractModel
 
-class contactModel(DateAbstractModel):
+class ContactModel(DateAbstractModel):
     email = models.EmailField(max_length=60, blank=False, null=False)
     name_surname = models.CharField(max_length=50, blank=False, null=False)
     message = models.TextField(blank=False, null=False)

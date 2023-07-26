@@ -1,11 +1,11 @@
 from django.db import models
-from blog.models import contentModel
+from blog.models import PostModel
 from account.models import CustomUserModel
 from blog.models.abstract_models import DateAbstractModel
 
-class commentModel(DateAbstractModel):
+class CommentModel(DateAbstractModel):
     author = models.ForeignKey('account.CustomUserModel', on_delete=models.CASCADE, related_name='comments')
-    content = models.ForeignKey(contentModel, on_delete=models.CASCADE, related_name='comments')
+    content = models.ForeignKey(PostModel, on_delete=models.CASCADE, related_name='comments')
     comment = models.TextField(blank=False, null=False)
 
 
