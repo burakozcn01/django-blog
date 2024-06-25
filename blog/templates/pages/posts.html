@@ -1,0 +1,43 @@
+{% extends 'pages/base.html' %}
+
+{% block title %}Yazılarım{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Başlık</th>
+        <th scope="col">Güncelleme Tarihi</th>
+        <th scope="col">İşlem</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for post in posts %}
+      <tr>
+        <th scope="row">{{ post.id }}</th>
+        <td>{{ post.title }}</td>
+        <td>{{ post.update_date }}</td>
+        <td>@mdo</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    {% if posts.has_previous %}
+    <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">Önceki</a></li>
+    {% else %}
+    <li class="page-item disabled"><span class="page-link">Önceki</span></li>
+    {% endif %}
+    <li class="page-item"><a class="page-link" href="">{{ posts.number }}</a></li>
+    {% if posts.has_next %}
+    <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">Sonraki</a></li>
+    <li class="page-item"><a class="page-link" href="?page={{ posts.paginator.num_pages }}">Son</a></li>
+    {% endif %}
+  </ul>
+</nav>
+{% endblock %}

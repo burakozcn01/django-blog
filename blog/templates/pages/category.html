@@ -1,60 +1,43 @@
-{% extends 'pages/base.html'%}
+{% extends 'pages/base.html' %}
 
-{% block title %}{{category_name}}{% endblock %}
+{% block title %}{{ category_name }}{% endblock %}
 
-{% block posts %}
-
-{% for post in posts %}
-
-  <!-- Main Content -->
-  <div class="container mt-4">
-    <div class="row">
-      <!-- Blog Cards -->
-      <div class="col-md-8 mx-auto">
-        <div class="blog-cards">
-          <!-- Blog cards go here -->
-          <div class="blog-card">
-            <a href="post_detail.html">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="img-wrapper">
-                    <img src="{{post.image.url}}" alt="Post Image" class="img-fluid">
-                  </div>
-                </div>
-                <div class="col-md-8">
-                  <h3 class="mt-2"><a href="{% url 'postdetail' slug=post.slug %}">{{ post.title }}</a></h3>
-                  <p> {{ post.content|safe|truncatechars_html:50 }} </p>
-                  <p> {{post.date|timesince}} önce paylaşıldı</p>
-                </div>
-              </div>
-            </a>
+{% block content %}
+<div class="container mt-4">
+  {% for post in posts %}
+  <div class="row mb-4">
+    <div class="col-md-8 mx-auto">
+      <div class="card bg-dark text-white">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="{{ post.image.url }}" class="card-img" alt="{{ post.title }}">
           </div>
-         
-
+          <div class="col-md-8">
+            <div class="card-body">
+              <h3 class="card-title"><a href="{% url 'postdetail' slug=post.slug %}" class="text-white">{{ post.title }}</a></h3>
+              <p class="card-text">{{ post.content|safe|truncatechars_html:50 }}</p>
+              <p class="card-text"><small class="text-muted">{{ post.date|timesince }} önce paylaşıldı</small></p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-    
-{% endfor %}
+  {% endfor %}
+</div>
 
 <nav aria-label="Page navigation example">
-  <ul class="pagination">
-{% if posts.has_previous %}
-  <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">Önceki</a></li>
-{% else %}
-  <li class="page-item disabled"><span class="page-link">Önceki</span></li>
-{% endif %}
-
-<li class="page-item"><a class="page-link" href="">{{posts.number}}</a></li>
-{% if posts.has_next %}
-  <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">Sonraki</a></li>
-  <li class="page-item"><a class="page-link" href="?page={{ posts.paginator.num_pages }}">Son</a></li>
-{% else %}
-{% endif %}
-
+  <ul class="pagination justify-content-center">
+    {% if posts.has_previous %}
+    <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">Önceki</a></li>
+    {% else %}
+    <li class="page-item disabled"><span class="page-link">Önceki</span></li>
+    {% endif %}
+    <li class="page-item"><a class="page-link" href="">{{ posts.number }}</a></li>
+    {% if posts.has_next %}
+    <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">Sonraki</a></li>
+    <li class="page-item"><a class="page-link" href="?page={{ posts.paginator.num_pages }}">Son</a></li>
+    {% endif %}
   </ul>
 </nav>
-
-
 {% endblock %}

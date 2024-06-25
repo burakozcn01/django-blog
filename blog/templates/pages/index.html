@@ -2,38 +2,73 @@
 
 {% block title %}Anasayfa{% endblock %}
 
-{% block posts %}
-
-<div class="row justify-content-center">
-  {% for post in posts %}
-  <div class="col-md-6 mb-4">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title"><a href="{% url 'postdetail' slug=post.slug %}">{{ post.title }}</a></h5>
-        <img class="card-img-top mb-3" src="{{ post.image.url }}" alt="{{ post.title }}" style="max-width: 300px; max-height: 250px;">
-        <p class="card-text">{{ post.content|safe|truncatechars_html:50 }}</p>
-        <p class="card-text"><small class="text-muted">{{ post.date|timesince }} önce paylaşıldı</small></p>
+{% block content %}
+<div class="container mt-4">
+  <div class="row">
+    {% if posts %}
+      {% for post in posts %}
+      <div class="col-md-6 mb-4">
+        <div class="card bg-dark text-white">
+          <img class="card-img-top" src="{{ post.image.url }}" alt="{{ post.title }}" style="max-height: 250px;">
+          <div class="card-body">
+            <h5 class="card-title"><a href="{% url 'postdetail' slug=post.slug %}" class="text-white">{{ post.title }}</a></h5>
+            <p class="card-text">{{ post.content|safe|truncatechars_html:50 }}</p>
+            <p class="card-text"><small class="text-muted">{{ post.created_date|timesince }} önce paylaşıldı</small></p>
+          </div>
+        </div>
       </div>
-    </div>
+      {% endfor %}
+    {% else %}
+      <p>Gösterilecek yazı yok.</p>
+    {% endif %}
   </div>
-  {% endfor %}
 </div>
 
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
     {% if posts.has_previous %}
-    <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">Önceki</a></li>
+      <li class="page-item">
+        <a class="page-link" href="?page=1">İlk</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{ posts.previous_page_number }}">Önceki</a>
+      </li>
     {% else %}
-    <li class="page-item disabled"><span class="page-link">Önceki</span></li>
+      <li class="page-item disabled">
+        <span class="page-link">İlk</span>
+      </li>
+      <li class="page-item disabled">
+        <span class="page-link">Önceki</span>
+      </li>
     {% endif %}
 
-    <li class="page-item"><a class="page-link" href="">{{ posts.number }}</a></li>
+    {% for num in posts.paginator.page_range %}
+      {% if posts.number == num %}
+        <li class="page-item active">
+          <span class="page-link">{{ num }} <span class="sr-only"></span></span>
+        </li>
+      {% elif num > posts.number|add:'-3' and num < posts.number|add:'3' %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
 
     {% if posts.has_next %}
-    <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">Sonraki</a></li>
-    <li class="page-item"><a class="page-link" href="?page={{ posts.paginator.num_pages }}">Son</a></li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{ posts.next_page_number }}">Sonraki</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{ posts.paginator.num_pages }}">Son</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <span class="page-link">Sonraki</span>
+      </li>
+      <li class="page-item disabled">
+        <span class="page-link">Son</span>
+      </li>
     {% endif %}
   </ul>
 </nav>
-
 {% endblock %}

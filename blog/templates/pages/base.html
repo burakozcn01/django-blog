@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="path-to-your-image">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,17 +9,28 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
 
+  <style>
+
+            /* Custom styles */
+        #comments {
+        margin-top: 20px;
+        }
+
+
+
   </style>
 </head>
 <body>
-    <!-- Navbar -->
-{% include 'pages/components/navbar.html' %}
-{% include 'pages/components/sidebar.html '%}
-
-{% block posts %}{% endblock %}
-
-
-{% include 'pages/components/footer.html '%}
+  <!-- Navbar -->
+  {% include 'pages/components/navbar.html' %}
+  
+  <!-- Main content -->
+  <div class="container mt-4">
+    {% block content %}{% endblock %}
+  </div>
+  
+  <!-- Footer -->
+  {% include 'pages/components/footer.html' %}
 
   <!-- Bootstrap Bundle with Popper.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>

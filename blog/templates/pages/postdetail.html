@@ -1,54 +1,43 @@
-{% extends 'pages/base.html'%}
+{% extends 'pages/base.html' %}
 {% load static %}
-{% block title %}{{post.title}}{% endblock %}
+{% block title %}{{ post.title }}{% endblock %}
 
-{% block posts %}
+{% block content %}
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class="card bg-dark text-white mb-4">
+        <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}" style="max-height: 400px; object-fit: cover;">
+        <div class="card-body">
+          <h1 class="card-title">{{ post.title }}</h1>
+          <p class="card-text">{{ post.content|safe }}</p>
+          <p class="card-text"><small class="text-muted">{{ post.date|timesince }} önce paylaşıldı</small></p>
+        </div>
+      </div>
 
-  <!-- Main Content -->
-  <div class="container mt-4">
-    <div class="row">
-      <!-- Blog Cards -->
-      <div class="col-md-8 mx-auto">
-        <div class="blog-cards">
-          <!-- Blog cards go here -->
-          <div class="blog-card">
-            <a href="post_detail.html">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="img-wrapper">
-                    <img src="{{post.image.url}}" alt="Post Image" class="img-fluid">
-                  </div>
-                </div>
-                <div class="col-md-8">
-                  <h3 class="mt-2">{{ post.title }}</h3>
-                  <p> {{ post.content|safe }} </p>
-                  <p> {{post.date|timesince}} önce paylaşıldı</p>
-                </div>
-              </div>
-            </a>
+      <h3 class="text-white">Yorumlar</h3>
+      <div id="comments">
+        {% for comment in comments %}
+        <div class="card bg-secondary text-white mt-3">
+          <div class="card-body d-flex align-items-start">
+            <div class="me-3">
+              {% if comment.author.avatar %}
+              <img src="{{ comment.author.avatar.url }}" alt="Profile Image" class="img-fluid rounded-circle" style="width: 50px; height: 50px;">
+              {% else %}
+              <img src="{% static 'img/1.PNG' %}" alt="Profile Image" class="img-fluid rounded-circle" style="width: 50px; height: 50px;">
+              {% endif %}
+            </div>
+            <div>
+              <h5 class="card-title">{{ comment.author.username }}</h5>
+              <p class="card-text">{{ comment.comment }}</p>
+            </div>
           </div>
         </div>
+        {% empty %}
+        <p class="text-white">Henüz yorum yapılmamış.</p>
+        {% endfor %}
       </div>
     </div>
   </div>
-     
-<h5>Yorumlar</h5>
-
-{% for comment in comments %}
-    <div class="card">
-        <div class="card-body" style="display:flex;flex-direction: row;">
-            <div>
-                {% if comment.author.avatar %}
-                    <img src="{{comment.author.avatar.url}}" alt="Profile Image" class="img-fluid" style="width: 50px; height: 50px; border-radius: 50%;">
-                {% else %}
-                    <img src="{% static 'img/1.PNG' %}" alt="Profile Image" class="img-fluid" style="width: 50px; height: 50px; border-radius: 50%;">
-                {% endif %}
-            </div>
-            <div>
-                <h5 class="card-title">{{comment.author.username}}</h5>
-                <p class="card-text">{{comment.comment}}</p>
-            </div>
-    </div>
-
-{% endfor %}
+</div>
 {% endblock %}

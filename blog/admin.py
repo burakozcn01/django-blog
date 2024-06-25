@@ -1,6 +1,17 @@
 from django.contrib import admin
-from .models import CategoryModel, PostModel, CommentModel, ContactModel
+from django.contrib.auth.admin import UserAdmin
+from .models import CustomUserModel, CategoryModel, PostModel, CommentModel, ContactModel
 
+@admin.register(CustomUserModel)
+class CustomUserAdmin(UserAdmin):
+    model = CustomUserModel
+    fieldsets = UserAdmin.fieldsets + (
+        (None, {'fields': ('avatar', 'linkedin', 'twitter', 'instagram', 'github', 'website', 'bio', 'udemy')}),
+    )
+
+    add_fieldsets = UserAdmin.add_fieldsets + (
+        (None, {'fields': ('avatar', 'linkedin', 'twitter', 'instagram', 'github', 'website', 'bio', 'udemy')}),
+    )
 
 @admin.register(CategoryModel)
 class CategoryAdmin(admin.ModelAdmin):
@@ -8,13 +19,13 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(PostModel)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['title', 'date', 'update_date', 'author']
+    list_display = ['title', 'created_date', 'update_date', 'author']
     search_fields = ('title', 'content')
 
 @admin.register(CommentModel)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('author', 'content', 'created_date', 'update_date')
-    search_fields = ('author__username', 'content')
+    list_display = ('author', 'post', 'created_date', 'update_date')
+    search_fields = ('author__username', 'post__title')
 
 @admin.register(ContactModel)
 class ContactAdmin(admin.ModelAdmin):
