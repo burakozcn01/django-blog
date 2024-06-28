@@ -17,7 +17,6 @@ Django Blog is a simple and powerful blogging platform designed to help you crea
 
 - **Post Management:** Create, update, and delete blog posts with ease.
 - **Categories and Tags:** Organize your posts into categories and tags for better navigation.
-- **User Authentication:** Secure user authentication to keep your data private.
 - **Responsive Design:** A responsive design that works on both desktop and mobile devices.
 
 ## Installation
