@@ -1,6 +1,6 @@
 # Django Blog
 
-Welcome to the Django Blog project! This project is a blogging platform built using the Django framework.
+This project is a blogging platform built using the Django framework.
 
 ## Table of Contents
 
